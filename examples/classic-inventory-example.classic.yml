@@ -1,0 +1,63 @@
+# IBM Cloud Classic Infrastructure Inventory Example
+# This file demonstrates how to use the classic_inventory plugin
+# Save this file with a .classic.yml or .classic.yaml extension
+
+# Basic configuration - query all datacenters
+plugin: ibm.cloudcollection.classic_inventory
+
+# Uncomment to target specific datacenters
+# datacenters:
+#   - dal10
+#   - wdc07
+#   - lon02
+
+# Uncomment to filter for running instances only
+# filters:
+#   status: RUNNING
+
+# Uncomment to use public IPs instead of private IPs
+# use_public_ips: False
+
+# Uncomment to add custom host variables
+# compose:
+#   memory: maxMemory
+#   cores: maxCpu
+#   datacenter_name: datacenter.name
+#   os: operatingSystem.softwareLicense.softwareDescription.longDescription
+
+# Uncomment to create groups based on datacenter
+# keyed_groups:
+#   - prefix: datacenter
+#     key: datacenter.name
+#   - prefix: os
+#     key: operatingSystem.softwareLicense.softwareDescription.name
+
+# Uncomment to create custom conditional groups
+# groups:
+#   production: "'prod' in hostname"
+#   development: "'dev' in hostname"
+#   database: "'db' in hostname"
+#   webserver: "'web' in hostname"
+
+# Uncomment to exclude specific hosts
+# exclude_ip:
+#   - 10.x.x.x
+# exclude_hostname:
+#   - test-server-1
+# exclude_id:
+#   - 12345678
+
+# Display configuration
+# ansible_display_name: hostname  # Options: hostname, ip, id
+# ansible_host_type: ip           # Options: hostname, ip
+
+# Fail if duplicate hostnames or IPs are found
+# fail_on_duplicate: True
+
+# Enable caching (optional)
+# cache: True
+# cache_plugin: jsonfile
+# cache_timeout: 3600
+# cache_connection: /tmp/ansible_inventory_cache
+
+# Made with Bob

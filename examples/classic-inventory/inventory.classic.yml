@@ -1,0 +1,62 @@
+# IBM Cloud Classic Infrastructure Dynamic Inventory
+# This is a complete example configuration for the classic_inventory plugin
+
+plugin: ibm.cloudcollection.classic_inventory
+
+# Target specific datacenters (optional)
+# Leave empty or comment out to query all datacenters
+datacenters:
+  - dal10
+  # - wdc07
+
+# Filter instances (optional)
+# filters:
+#   status: RUNNING
+
+# Use public IPs instead of private IPs (optional)
+use_public_ips: false
+
+# Add custom host variables (optional)
+compose:
+  # memory: maxMemory
+  # cores: maxCpu
+  datacenter_name: datacenter.name
+  domain: domain
+  fqdn: fullyQualifiedDomainName
+
+# Group hosts by datacenter and other attributes (optional)
+# keyed_groups:
+#   - prefix: datacenter
+#     key: datacenter.name
+#   - prefix: memory
+#     key: maxMemory
+
+# Create conditional groups (optional)
+# groups:
+#   production: "'prod' in hostname"
+#   development: "'dev' in hostname"
+#   database: "'db' in hostname"
+#   webserver: "'web' in hostname"
+
+# Exclude specific hosts (optional)
+# exclude_ip:
+#   - 10.x.x.x
+# exclude_hostname:
+#   - test-server
+# exclude_id:
+#   - 12345678
+
+# Display configuration
+ansible_display_name: fqdn     # Options: hostname, ip, id
+ansible_host_type: ip           # Options: hostname, ip
+
+# Fail if duplicate hostnames or IPs are found
+fail_on_duplicate: true
+
+# Enable caching for better performance (optional)
+# cache: true
+# cache_plugin: jsonfile
+# cache_timeout: 3600
+# cache_connection: /tmp/ansible_classic_inventory_cache
+
+# Made with Bob

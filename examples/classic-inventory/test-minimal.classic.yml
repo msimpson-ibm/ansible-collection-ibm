@@ -1,0 +1,13 @@
+# Minimal test configuration for classic_inventory plugin
+# This will attempt to query Classic Infrastructure
+# Expected: Plugin loads successfully, but may return empty if no VMs exist
+
+plugin: ibm.cloudcollection.classic_inventory
+
+# No datacenters specified - will query all
+# No filters - will include all VMs found
+
+# Disable duplicate check for testing (some IKS nodes may share IPs)
+fail_on_duplicate: false
+
+# Made with Bob

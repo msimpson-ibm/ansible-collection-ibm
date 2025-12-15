@@ -1,0 +1,58 @@
+---
+# Example playbook using IBM Cloud Classic Infrastructure inventory
+# Usage: ansible-playbook -i inventory.classic.yml playbook-example.yml
+
+- name: Manage IBM Cloud Classic Infrastructure Servers
+  hosts: all
+  gather_facts: yes
+  
+  tasks:
+    - name: Display server information
+      debug:
+        msg: |
+          ========================================
+          Server: {{ inventory_hostname }}
+          IP Address: {{ ansible_host }}
+          Memory: {{ memory | default('N/A') }} MB
+          CPU Cores: {{ cores | default('N/A') }}
+          Datacenter: {{ datacenter_name | default('N/A') }}
+          OS: {{ ansible_distribution | default('N/A') }} {{ ansible_distribution_version | default('') }}
+          ========================================
+
+    - name: Test connectivity
+      ping:
+      register: ping_result
+
+    - name: Show ping result
+      debug:
+        msg: "Server {{ inventory_hostname }} is reachable!"
+      when: ping_result is succeeded
+
+- name: Production servers only
+  hosts: production
+  gather_facts: no
+  
+  tasks:
+    - name: Display production server info
+      debug:
+        msg: "This is a production server: {{ inventory_hostname }}"
+
+- name: Development servers only
+  hosts: development
+  gather_facts: no
+  
+  tasks:
+    - name: Display development server info
+      debug:
+        msg: "This is a development server: {{ inventory_hostname }}"
+
+- name: Datacenter-specific tasks
+  hosts: datacenter_dal10
+  gather_facts: no
+  
+  tasks:
+    - name: Display Dallas datacenter servers
+      debug:
+        msg: "Server {{ inventory_hostname }} is in Dallas (dal10)"
+
+# Made with Bob
